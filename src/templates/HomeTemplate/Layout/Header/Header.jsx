@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default function Header() {
     return (
@@ -6,21 +7,19 @@ export default function Header() {
             <div className="container flex justify-between h-16 mx-auto">
                 <a rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2">
                     <img src="https://cybersoft.edu.vn/wp-content/uploads/2017/03/MIN-OP1.png" alt="..." />
-                   
+
                 </a>
                 <ul className="items-stretch hidden space-x-3 lg:flex">
                     <li className="flex">
-                        <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 text-white">Link</a>
+                        <NavLink to="/home" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-white" activeClassName='border-b-white'>Home</NavLink>
                     </li>
                     <li className="flex">
-                        <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent text-white">Link</a>
+                        <NavLink to="/contact" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-white" activeClassName='border-b-white'>Contact</NavLink>
                     </li>
                     <li className="flex">
-                        <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent text-white">Link</a>
+                        <NavLink to="/news" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-white" activeClassName='border-b-white'>News</NavLink>
                     </li>
-                    <li className="flex">
-                        <a rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent text-white">Link</a>
-                    </li>
+
                 </ul>
                 <div className="items-center flex-shrink-0 hidden lg:flex">
                     <button className="self-center px-8 py-3 rounded">Sign in</button>
