@@ -4,7 +4,8 @@ import { Carousel } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import axios from 'axios';
+// import axios from 'axios';
+import { getCarouselAction } from '../../../../store/actions/CarouselAction';
 
 const contentStyle = {
     height: '600px',
@@ -19,25 +20,17 @@ const contentStyle = {
 export default function HomeCarousel(props) {
     const { arrImg } = useSelector(state => state.CarouselReducer)
     console.log("arrImg: ", arrImg);
+
     const dispatch = useDispatch()
-    useEffect(async () => {
-        try {
-            const result = await axios({
-                url: 'https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachBanner',
-                method: 'GET',
+    // sẽ tự kích hoạt khi component load ra
+    useEffect( () => {
+        
+        // 1 action = {type: '', data}
+        // 2 (phải cài middleware) callBackFunction (dispatch)
+        dispatch(getCarouselAction()); 
 
-            });
-            // Đưa lên reducer
-            console.log('result', result)
-
-            dispatch({
-                type: 'SET_CAROUSEL',
-                arrImg: result.data.content,
-            })
-        } catch (errors) {
-            console.log('errors', errors)
-        }
     }, [])
+
 
     const rendenImg = () => {
         return arrImg.map((item, index) => {
