@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // import axios from 'axios';
 import { getCarouselAction } from '../../../../store/actions/CarouselAction';
-
+import './HomeCarousel.css'
 const contentStyle = {
     height: '600px',
     color: '#fff',

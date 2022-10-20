@@ -1,12 +1,12 @@
 import axios from "axios";
-import { quanLyPhim } from "../../services/quanLyPhimService";
+import { quanLyPhimService } from "../../services/QuanLyPhimService";
 import { DOMAIN } from "../../util/settings/config";
 import { SET_CAROUSEL } from "./type/CarouselType";
 
 export const getCarouselAction = () => {
     return async (dispatch) => {
         try {
-            const result = await quanLyPhim.layDanhSachBanner()
+            const result = await quanLyPhimService.layDanhSachBanner()
             // axios({
             //     url: `${DOMAIN}/api/QuanLyPhim/LayDanhSachBanner`,
             //     method: 'GET',
