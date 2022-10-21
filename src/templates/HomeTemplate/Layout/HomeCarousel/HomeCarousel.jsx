@@ -19,15 +19,15 @@ const contentStyle = {
 
 export default function HomeCarousel(props) {
     const { arrImg } = useSelector(state => state.CarouselReducer)
-    console.log("arrImg: ", arrImg);
+    // console.log("arrImg: ", arrImg);
 
     const dispatch = useDispatch()
     // sẽ tự kích hoạt khi component load ra
-    useEffect( () => {
-        
+    useEffect(() => {
+
         // 1 action = {type: '', data}
         // 2 (phải cài middleware) callBackFunction (dispatch)
-        dispatch(getCarouselAction()); 
+        dispatch(getCarouselAction());
 
     }, [])
 
