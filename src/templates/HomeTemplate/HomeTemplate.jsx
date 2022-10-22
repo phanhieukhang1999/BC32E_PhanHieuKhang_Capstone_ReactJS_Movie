@@ -12,7 +12,7 @@ export const HomeTemplate = (props) => { // path, exact, Component
 
         return <Fragment>
             <Header />
-            <HomeCarousel {...propsRoute} />
+            
 
             <Component {...propsRoute} />
 
