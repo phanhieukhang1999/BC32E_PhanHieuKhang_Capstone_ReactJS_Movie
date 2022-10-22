@@ -10,17 +10,17 @@ import { layDanhSachHeThongRapAction } from '../../store/actions/type/QuanLyRapA
 export default function Home(props) {
 
     const { arrFilm } = useSelector(state => state.QuanLyPhimReducer)
-    const {heThongRapChieu} = useSelector(state => state.QuanLyRapReducer)
+    const { heThongRapChieu } = useSelector(state => state.QuanLyRapReducer)
     const dispatch = useDispatch()
     console.log('HomeProps', arrFilm)
 
 
-   useEffect(() => {
-    const action = layDanhSachPhimAction()
-    dispatch(action)
-    dispatch(layDanhSachHeThongRapAction())
+    useEffect(() => {
+        const action = layDanhSachPhimAction()
+        dispatch(action)
+        dispatch(layDanhSachHeThongRapAction())
 
-   },[])
+    }, [])
 
     return (
         <div>
@@ -35,8 +35,9 @@ export default function Home(props) {
 
 
 
-
-            <HomeMenu heThongRapChieu={heThongRapChieu}/>
+            <div className='container'>
+                <HomeMenu heThongRapChieu={heThongRapChieu} />
+            </div>
         </div>
     )
 }
