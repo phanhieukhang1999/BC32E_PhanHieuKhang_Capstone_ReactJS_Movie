@@ -5,7 +5,7 @@ import HomeMenu from './HomeMenu/HomeMenu'
 import { useSelector, useDispatch } from 'react-redux'
 import MultipleRowSlick from '../../components/RSlick/MultipleRowSlick'
 import { layDanhSachPhimAction } from '../../store/actions/QuanLyPhimAction'
-import { layDanhSachHeThongRapAction } from '../../store/actions/type/QuanLyRapAction'
+import { layDanhSachHeThongRapAction } from '../../store/actions/QuanLyRapAction'
 import HomeCarousel from '../../templates/HomeTemplate/Layout/HomeCarousel/HomeCarousel'
 
 export default function Home(props) {
@@ -25,7 +25,7 @@ export default function Home(props) {
 
     return (
         <div>
-            <HomeCarousel/>
+            <HomeCarousel />
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
                     <MultipleRowSlick arrFilm={arrFilm} />
