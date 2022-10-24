@@ -1,7 +1,6 @@
 import { quanLyNguoiDungService } from "../../services/QuanLyNguoiDungService"
-import { TOKEN } from "../../util/settings/config"
 import { DANG_NHAP_ACTION } from "./type/QuanLyNguoiDungType"
-import {history} from '../../App'
+import { history } from '../../App'
 export const dangNhapAction = (thongTinDangNhap) => {
     return async (dispatch) => {
         try {
@@ -12,13 +11,13 @@ export const dangNhapAction = (thongTinDangNhap) => {
                     thongTinDangNhap: result.data.content,
 
                 })
-
+                // chuyển hướng đăng nhập về trang trước đó
                 history.goBack()
 
                 console.log("result: ", result);
             }
         } catch (error) {
-            console.log("error: ", error.respone.data);
+            console.log("error: ", error);
 
         }
     }

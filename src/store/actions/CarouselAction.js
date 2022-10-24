@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import { quanLyPhimService } from "../../services/QuanLyPhimService";
 import { SET_CAROUSEL } from "./type/CarouselType";
 
