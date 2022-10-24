@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
+import {history} from '../../../../App'
 export default function Header() {
     return (
         <header className="p-4 dark:bg-gray-800 dark:text-gray-100 bg-opacity-40 bg-black text-white fixed w-full z-10">
@@ -22,7 +22,9 @@ export default function Header() {
 
                 </ul>
                 <div className="items-center flex-shrink-0 hidden lg:flex">
-                    <button className="self-center px-8 py-3 rounded">Sign in</button>
+                    <button className="self-center px-8 py-3 rounded" onClick={() => {
+                        history.push('login')
+                    }}>Sign in</button>
                     <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Sign up</button>
                 </div>
                 <button className="p-4 lg:hidden">
