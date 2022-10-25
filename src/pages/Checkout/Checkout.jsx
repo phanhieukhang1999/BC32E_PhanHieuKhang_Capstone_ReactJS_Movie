@@ -8,11 +8,15 @@ import { DAT_VE } from '../../store/actions/type/QuanLyDatVeType'
 import _ from 'lodash'
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe'
 
-export default function Checkout(props) {
+import { Tabs } from 'antd';
+import { layThongTinNguoiDungAction } from '../../store/actions/QuanLyNguoiDungAction'
+
+function Checkout(props) {
 
   const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
 
   const { chiTietPhongVe, danhSachGheDangDat } = useSelector(state => state.QuanLyDatVeReducer)
+  console.log("danhSachGheDangDat: ", danhSachGheDangDat);
   console.log("chiTietPhongVe: ", { chiTietPhongVe });
   const dispatch = useDispatch()
 
@@ -165,4 +169,80 @@ export default function Checkout(props) {
       </div>
     </div>
   )
+}
+
+const { TabPane } = Tabs
+
+function callback(key) {
+  console.log(key)
+}
+
+export default function (props) {
+  return <div className='p-5'>
+    <Tabs defaultActiveKey="1" onChange={callback}>
+      <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
+        <Checkout {...props} />
+      </TabPane>
+      <TabPane tab="02 KẾT QUẢ ĐẶT VÉ" key="2">
+        <KetQuaDatVe {...props} />
+      </TabPane>
+
+    </Tabs>
+  </div>
+}
+
+
+function KetQuaDatVe(props) {
+
+  const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer)
+  
+  const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
+  
+  const dispatch = useDispatch()
+  console.log("thongTinNguoiDung: ", thongTinNguoiDung);
+
+  useEffect(() => {
+    const action = layThongTinNguoiDungAction()
+    dispatch(action)
+  }, [])
+
+  const renderTicketItems =  () => {
+    return thongTinNguoiDung.thongTinDatVe?.map((ticket, index) => {
+      return <div className="p-2 lg:w-1/3 md:w-1/2 w-full" key={index}>
+        <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+          <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://picsum.photos/200/200" />
+          <div className="flex-grow">
+            <h2 className="text-gray-900 title-font font-medium">Lật mặt 48h</h2>
+            <p className="text-gray-500">10:30 Rap 2 Cinestar</p>
+          </div>
+        </div>
+      </div>
+    })
+  }
+
+  return <div className='py-5'>
+    <h3>Kết quả đặt vé</h3>
+    <section className="text-gray-600 body-font">
+      <div className="container px-5 py-24 mx-auto">
+        <div className="flex flex-col text-center w-full mb-20">
+          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-green-500">Lịch sử đặt vé khách hàng</h1>
+          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Hãy xem thông tin địa điểm và thời gian để xem phim vui vẻ bạn nhé !</p>
+        </div>
+        <div className="flex flex-wrap -m-2">
+          {renderTicketItems()}
+          {/* <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://picsum.photos/200/200" />
+              <div className="flex-grow">
+                <h2 className="text-gray-900 title-font font-medium">Lật mặt 48h</h2>
+                <p className="text-gray-500">10:30 Rap 2 Cinestar</p>
+              </div>
+            </div>
+          </div> */}
+
+        </div>
+      </div>
+    </section>
+
+  </div>
 }

@@ -16,7 +16,7 @@ export const QuanLyDatVeReducer = (state = stateDefault, action) => {
             // Cập nhật danh sách ghế đang đặt
             let danhSachgheCapNhat = [...state.danhSachGheDangDat]
             let index = danhSachgheCapNhat.findIndex(gheDangDat => gheDangDat.maGhe === action.gheDuocChon.maGhe)
-            if (index != -1) {
+            if (index !== -1) {
                 // Nếu tìm thấy ghế được chọn trong mảng có nghĩa là trước đó đã click vào rồi => xóa đi 
                 danhSachgheCapNhat.splice(index, 1);
             } else {

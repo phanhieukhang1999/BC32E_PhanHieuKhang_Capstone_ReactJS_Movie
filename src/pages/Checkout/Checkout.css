@@ -24,9 +24,9 @@
 
 .gheDaDuocDat {
   /*ghế được chính mình đặt */
-  background-color: rgb(246, 246, 246);
+  background-color: rgb(9, 197, 230);
   -webkit-box-shadow: -1px 2px 18px -6px rgb(11, 193, 217);
   box-shadow: -1px 2px 18px -6px rgb(11, 193, 217);
-  color: rgb(11, 193, 217) !important;
+  color: #fff !important;
   border: 1px solid rgb(11, 193, 217);
 }
