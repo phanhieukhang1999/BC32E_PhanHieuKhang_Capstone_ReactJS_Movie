@@ -10,7 +10,8 @@ if (localStorage.getItem(USER_LOGIN)) {
 const stateDefault = {
     userLogin: user,
 
-    thongTinNguoiDung: {}
+    thongTinNguoiDung: {},
+
 }
 
 
@@ -26,7 +27,7 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
 
         case SET_THONG_TIN_NGUOI_DUNG: {
             state.thongTinNguoiDung = action.thongTinNguoiDung
-            return {...state}
+            return { ...state }
         }
 
 

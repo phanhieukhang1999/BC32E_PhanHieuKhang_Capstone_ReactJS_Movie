@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { datVeAction, layChiTietPhongVeAction } from '../../store/actions/QuanLyDatVeAction'
 import style from './Checkout.module.css'
@@ -10,6 +10,7 @@ import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe'
 
 import { Tabs } from 'antd';
 import { layThongTinNguoiDungAction } from '../../store/actions/QuanLyNguoiDungAction'
+import moment, { months } from 'moment'
 
 function Checkout(props) {
 
@@ -173,13 +174,22 @@ function Checkout(props) {
 
 const { TabPane } = Tabs
 
-function callback(key) {
-  console.log(key)
-}
+// function callback(key) {
+//   console.log(key)
+// }
 
-export default function (props) {
+export default function CheckoutTab(props) {
+
+  const {tabActive} = useSelector(state => state.QuanLyDatVeReducer)
+  console.log("tabActive: ", tabActive);
+  const dispatch = useDispatch()
   return <div className='p-5'>
-    <Tabs defaultActiveKey="1" onChange={callback}>
+    <Tabs defaultActiveKey='1' activeKey={tabActive} onChange={(key) => {
+      dispatch({
+        type: 'CHUYEN_TAB_ACTIVE',
+        number: key.toString()
+      })
+    }}>
       <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
         <Checkout {...props} />
       </TabPane>
@@ -194,48 +204,57 @@ export default function (props) {
 
 function KetQuaDatVe(props) {
 
-  const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer)
-  
-  const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
-  
   const dispatch = useDispatch()
+
+  const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer)
   console.log("thongTinNguoiDung: ", thongTinNguoiDung);
+  // ko lofg ra dc thontin nguodung
+
+  const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
+
 
   useEffect(() => {
     const action = layThongTinNguoiDungAction()
     dispatch(action)
   }, [])
 
-  const renderTicketItems =  () => {
+  const renderTicket = function () {
     return thongTinNguoiDung.thongTinDatVe?.map((ticket, index) => {
+      const seats = _.first(ticket.danhSachGhe)
       return <div className="p-2 lg:w-1/3 md:w-1/2 w-full" key={index}>
         <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-          <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://picsum.photos/200/200" />
+          <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src={ticket.hinhAnh} />
           <div className="flex-grow">
-            <h2 className="text-gray-900 title-font font-medium">Lật mặt 48h</h2>
-            <p className="text-gray-500">10:30 Rap 2 Cinestar</p>
+            <h2 className="text-red-500 title-font font-medium text-2xl">{ticket.tenPhim}</h2>
+            <p className="text-gray-500"><span className="font-bold">Giờ chiếu:</span> {moment(ticket.ngayDat).format('hh:mm A')} - <span className="font-bold">Ngày chiếu:</span>  {moment(ticket.ngayDat).format('DD-MM-YYYY')} .</p>
+            <p><span className="font-bold">Địa điểm:</span> {seats.tenHeThongRap}   </p>
+            <p>
+              <span className="font-bold">Tên rạp:</span>  {seats.tenCumRap} - <span className="font-bold">Ghế:</span>  {ticket.danhSachGhe.map((ghe, index) => { return <span className="text-green-500 text-xl" key={index}> [ {ghe.tenGhe} ] </span> })}
+            </p>
           </div>
         </div>
       </div>
     })
   }
 
-  return <div className='py-5'>
-    <h3>Kết quả đặt vé</h3>
+
+
+  return <div className="p-5">
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
-          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-green-500">Lịch sử đặt vé khách hàng</h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Hãy xem thông tin địa điểm và thời gian để xem phim vui vẻ bạn nhé !</p>
+          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4  text-green-600 ">Lịch sử đặt vé khách hàng</h1>
+          {/* <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Hãy xem thông tin địa và thời gian để xem phim vui vẻ bạn nhé !</p> */}
         </div>
         <div className="flex flex-wrap -m-2">
-          {renderTicketItems()}
+          {renderTicket()}
+
           {/* <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
             <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
               <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://picsum.photos/200/200" />
               <div className="flex-grow">
                 <h2 className="text-gray-900 title-font font-medium">Lật mặt 48h</h2>
-                <p className="text-gray-500">10:30 Rap 2 Cinestar</p>
+                <p className="text-gray-500">10:20 Rạp 5, Hệ thống rạp cinestar bhd </p>
               </div>
             </div>
           </div> */}

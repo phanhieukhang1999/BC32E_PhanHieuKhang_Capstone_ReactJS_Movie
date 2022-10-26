@@ -26,16 +26,17 @@ export const dangNhapAction = (thongTinDangNhap) => {
 
 
 export const layThongTinNguoiDungAction = (thongTinDangNhap) => {
-    return async (dispatch) => {
+    return async dispatch => {
         try {
             const result = await quanLyNguoiDungService.layThongTinNguoiDung()
-            if (result.statusCode  === 200) {
+            console.log("result: ", result);
+
+            if (result.status === 200) {
                 dispatch({
                     type: SET_THONG_TIN_NGUOI_DUNG,
                     thongTinNguoiDung: result.data.content,
 
                 })
-                console.log("result: ", result);
             }
         } catch (error) {
             console.log("error: ", error.response.data);
