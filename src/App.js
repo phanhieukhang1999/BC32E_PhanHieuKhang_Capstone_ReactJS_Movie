@@ -29,7 +29,7 @@ function App() {
         <HomeTemplate path="/news" exact Component={News} />
         <HomeTemplate path="/detail/:id" exact Component={Detail} />
 
-        <Route path="/register" exact Component={Register} />
+        <UserTemplate path="/register" exact Component={Register} />
         
         <UserTemplate path="/login" exact Component={Login} />
 

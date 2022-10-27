@@ -1,7 +1,30 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import {history} from '../../../../App'
+import { history } from '../../../../App'
+import { Select } from 'antd';
+
+// Hook đa ngôn ngữ
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+import { useSelector } from 'react-redux';
+
+
+const { Option } = Select;
+
+
 export default function Header() {
+
+    // Đa ngôn ngữ
+    const { t, i18n } = useTranslation();
+
+    const handleChange = (value) => {
+        i18n.changeLanguage(value)
+
+    };
+
+    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
+     
+
     return (
         <header className="p-4 dark:bg-gray-800 dark:text-gray-100 bg-opacity-40 bg-black text-white fixed w-full z-10">
             <div className="container flex justify-between h-16 mx-auto">
@@ -24,8 +47,17 @@ export default function Header() {
                 <div className="items-center flex-shrink-0 hidden lg:flex">
                     <button className="self-center px-8 py-3 rounded" onClick={() => {
                         history.push('login')
-                    }}>Sign in</button>
-                    <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Sign up</button>
+                    }}>{t('signin')}</button>
+                    <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900" onClick={() => {
+                        history.push('/register')
+                    }}>{t('register')}</button>
+
+                    <Select defaultValue="en" style={{width: 100,}}onChange={handleChange}>
+                        <Option value="en">Eng</Option>
+                        <Option value="chi">Chi</Option>
+                        
+                        <Option value="vi">Vi</Option>
+                    </Select>
                 </div>
                 <button className="p-4 lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-100">
