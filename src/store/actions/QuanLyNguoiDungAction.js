@@ -1,5 +1,5 @@
 import { quanLyNguoiDungService } from "../../services/QuanLyNguoiDungService"
-import { DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from "./type/QuanLyNguoiDungType"
+import { DANG_KY_ACTION, DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from "./type/QuanLyNguoiDungType"
 import { history } from '../../App'
 export const dangNhapAction = (thongTinDangNhap) => {
     return async (dispatch) => {
@@ -12,7 +12,30 @@ export const dangNhapAction = (thongTinDangNhap) => {
 
                 })
                 // chuyển hướng đăng nhập về trang trước đó
+                // history.push(`detail/${thongTinDangNhap.lichChieu.maLichChieu}`)
                 history.goBack()
+
+                console.log("result: ", result);
+            }
+        } catch (error) {
+            console.log("error: ", error);
+
+        }
+    }
+}
+
+export const dangKyAction = (thongTinDangKy) => {
+    return async (dispatch) => {
+        try {
+            const result = await quanLyNguoiDungService.dangKy(thongTinDangKy)
+            if (result.status === 200) {
+                dispatch({
+                    type: DANG_KY_ACTION,
+                    thongTinDangKy: result.data.content,
+
+                })
+                // history chuyển hướng dăng ký thành công về trang login
+                history.push('/login')
 
                 console.log("result: ", result);
             }

@@ -65,14 +65,14 @@ export default function Login(props) {
                             <input type="password" name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào mật khẩu" />
                         </div>
                         <div className="mt-10">
-                            <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+                            <button className="bg-indigo-500 text-gray-100 text-xl p-4 w-full rounded-full tracking-wide
                           font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                           shadow-lg">
                                 Đăng nhập
                             </button>
                         </div>
                     </div>
-                    <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
+                    <div className="mt-12 text-xl font-display font-semibold text-gray-700 text-center">
                         Bạn chưa có tài khoản ? <NavLink to="/register" className="cursor-pointer text-indigo-600 hover:text-indigo-800">Đăng ký</NavLink>
                     </div>
                 </div>
