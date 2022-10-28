@@ -14,6 +14,7 @@ import { HomeTemplate } from './templates/HomeTemplate/HomeTemplate';
 import { Suspense, lazy} from 'react';
 import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 import Loading from './components/Loading/Loading';
+import Profile from './pages/Profile/Profile';
 
 // const CheckoutTemplateLazy = lazy(() => import('./templates/CheckoutTemplate/CheckoutTemplate'))
 
@@ -28,6 +29,7 @@ function App() {
         <HomeTemplate path="/contact" exact Component={Contact} />
         <HomeTemplate path="/news" exact Component={News} />
         <HomeTemplate path="/detail/:id" exact Component={Detail} />
+        <HomeTemplate path="/profile" exact Component={Profile} />
 
         <UserTemplate path="/register" exact Component={Register} />
         

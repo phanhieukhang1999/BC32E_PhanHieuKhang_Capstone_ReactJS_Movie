@@ -48,7 +48,7 @@ export default class Demo extends React.PureComponent {
                                                 <div className='grid grid-cols-6 gap-6'>
                                                     {/* slice lấy tối đa 12 lịch chiếu */}
                                                     {phim.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
-                                                        return <NavLink className="text-2xl text-red-400" to="/" key={index}>
+                                                        return <NavLink className="text-2xl text-red-400" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
                                                             {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                                         </NavLink>
                                                     })}

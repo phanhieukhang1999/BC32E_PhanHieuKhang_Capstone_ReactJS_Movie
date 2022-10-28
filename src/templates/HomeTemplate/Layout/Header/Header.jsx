@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { history } from '../../../../App'
 import { Select } from 'antd';
@@ -7,12 +7,16 @@ import { Select } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
 import { useSelector } from 'react-redux';
+import _ from 'lodash';
+import { TOKEN, USER_LOGIN } from '../../../../util/settings/config';
 
 
 const { Option } = Select;
 
 
 export default function Header() {
+
+    const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
 
     // Đa ngôn ngữ
     const { t, i18n } = useTranslation();
@@ -22,8 +26,30 @@ export default function Header() {
 
     };
 
-    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
-     
+    const renderLogin = () => {
+        if (_.isEmpty(userLogin)) {
+            return <Fragment>
+                <button className="self-center px-8 py-3 rounded" onClick={() => {
+                    history.push('/login')
+                }}>{t('signin')}</button>
+                <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900" onClick={() => {
+                    history.push('/register')
+                }}>{t('register')}</button>
+
+            </Fragment>
+        }
+        return <Fragment> <button className="self-center px-8 py-3 rounded" onClick={() => {
+            history.push('/profile')
+        }}>Hello ! {userLogin.taiKhoan}</button>
+
+            <button className='text-white mr-5' onClick={() => {
+                localStorage.removeItem(USER_LOGIN)
+                localStorage.removeItem(TOKEN)
+                history.push('/home')
+                window.location.reload()
+            }}>Đăng xuất</button>
+        </Fragment>
+    }
 
     return (
         <header className="p-4 dark:bg-gray-800 dark:text-gray-100 bg-opacity-40 bg-black text-white fixed w-full z-10">
@@ -45,17 +71,14 @@ export default function Header() {
 
                 </ul>
                 <div className="items-center flex-shrink-0 hidden lg:flex">
-                    <button className="self-center px-8 py-3 rounded" onClick={() => {
-                        history.push('login')
-                    }}>{t('signin')}</button>
-                    <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900" onClick={() => {
-                        history.push('/register')
-                    }}>{t('register')}</button>
 
-                    <Select defaultValue="en" style={{width: 100,}}onChange={handleChange}>
+                    {renderLogin()}
+
+
+                    <Select defaultValue="en" style={{ width: 100, }} onChange={handleChange}>
                         <Option value="en">Eng</Option>
                         <Option value="chi">Chi</Option>
-                        
+
                         <Option value="vi">Vi</Option>
                     </Select>
                 </div>
