@@ -47,7 +47,7 @@ export default function Header() {
                 localStorage.removeItem(TOKEN)
                 history.push('/home')
                 window.location.reload()
-            }}>Đăng xuất</button>
+            }}>{t('logout')}</button>
         </Fragment>
     }
 

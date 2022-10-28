@@ -4,3 +4,5 @@ export const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y
 export const GROUPID = 'GP11'
 
 export const USER_LOGIN = 'USER_LOGIN'
+
+export const USER_REGISTER = 'USER_REGISTER'
