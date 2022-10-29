@@ -271,16 +271,23 @@ export default function CheckoutTab(props) {
   }, [])
 
   const operations = <Fragment>
-    {!_.isEmpty(userLogin) ? <Fragment><button onClick={() => {
-      history.push('/profile')
-    }}><div style={{ height: 50, width: 50, display: 'flex', justifyContent: 'center', alignItems: 'center' }} className='text-2xl ml-5 rounded-full bg-red-500'>{userLogin.taiKhoan.substr(0, 1)}</div>Hello ! {userLogin.taiKhoan}
-    </button>
-      <button className='text-red-800 font-bold ml-5' onClick={() => {
-        localStorage.removeItem(USER_LOGIN)
-        localStorage.removeItem(TOKEN)
-        history.push('/home')
-        window.location.reload()
-      }}>Đăng xuất</button>
+    {!_.isEmpty(userLogin) ? <Fragment>
+      <div style={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'center' , paddingBottom:'10px'}}>
+
+        <button className='text-red-800 font-bold ml-5' onClick={() => {
+          localStorage.removeItem(USER_LOGIN)
+          localStorage.removeItem(TOKEN)
+          history.push('/home')
+          window.location.reload()
+        }}>Đăng xuất</button>
+        <button style={{ display: 'flex', alignItems:'center' }} onClick={() => {
+          history.push(`/profile/${userLogin.taiKhoan}`)
+        }}>
+          <span>Hello ! {userLogin.taiKhoan}</span>
+          <div style={{ height: 50, width: 50, display: 'flex', justifyContent: 'center', alignItems: 'center' }} className='text-2xl ml-5 rounded-full bg-red-500'>{userLogin.taiKhoan.substr(0, 1)}</div>
+
+        </button>
+      </div>
     </Fragment> : ''}
   </Fragment>
 
@@ -313,7 +320,7 @@ function KetQuaDatVe(props) {
 
   const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer)
   console.log("thongTinNguoiDung: ", thongTinNguoiDung);
-  // ko lofg ra dc thontin nguodung
+
 
   const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
 
@@ -346,7 +353,7 @@ function KetQuaDatVe(props) {
 
   return <div className="p-5">
     <section className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto">
+      <div className="container px-5 py-10 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4  text-green-600 ">Lịch sử đặt vé khách hàng</h1>
           {/* <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Hãy xem thông tin địa và thời gian để xem phim vui vẻ bạn nhé !</p> */}
@@ -354,15 +361,6 @@ function KetQuaDatVe(props) {
         <div className="flex flex-wrap -m-2">
           {renderTicket()}
 
-          {/* <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-            <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-              <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src="https://picsum.photos/200/200" />
-              <div className="flex-grow">
-                <h2 className="text-gray-900 title-font font-medium">Lật mặt 48h</h2>
-                <p className="text-gray-500">10:20 Rạp 5, Hệ thống rạp cinestar bhd </p>
-              </div>
-            </div>
-          </div> */}
 
         </div>
       </div>

@@ -57,12 +57,12 @@ export default function Register(props) {
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Mật khẩu</div>
 
-              <input type="password" name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào mật khẩu" />
+              <input name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào mật khẩu" />
             </div>
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Nhập lại khẩu</div>
 
-              <input type="password" name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập lại mật khẩu" />
+              <input name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập lại mật khẩu" />
             </div>
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Họ tên</div>

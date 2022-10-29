@@ -39,7 +39,7 @@ export default function Header() {
             </Fragment>
         }
         return <Fragment> <button className="self-center px-8 py-3 rounded" onClick={() => {
-            history.push('/profile')
+            history.push(`/profile/${userLogin.taiKhoan}`)
         }}>Hello ! {userLogin.taiKhoan}</button>
 
             <button className='text-white mr-5' onClick={() => {
