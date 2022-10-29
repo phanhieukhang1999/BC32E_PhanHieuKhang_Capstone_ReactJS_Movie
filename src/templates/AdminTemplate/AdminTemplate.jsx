@@ -57,8 +57,9 @@ const AdminTemplate = (props) => { //path, exact, Component
                     window.location.reload();
                 }} className="text-white ml-5">Đăng xuất</button>
                 <button style={{ display: 'flex' }} onClick={() => {
-                    history.push('/profile')
-                }}><span className="text-white">Hello ! {userLogin.taiKhoan}</span> <div style={{ width: 50, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="text-2xl ml-5 rounded-full bg-red-200">{userLogin.taiKhoan.substr(0, 1)}</div>
+                    history.push(`/profile/${userLogin.taiKhoan}`)
+                }}>
+                    <span className="text-white">Hello ! {userLogin.taiKhoan}</span> <div style={{ width: 50, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="text-2xl ml-5 rounded-full bg-red-200">{userLogin.taiKhoan.substr(0, 1)}</div>
                 </button>
 
             </div> </Fragment> : ''}
