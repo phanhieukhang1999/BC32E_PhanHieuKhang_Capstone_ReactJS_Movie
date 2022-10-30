@@ -19,10 +19,14 @@ export class QuanLyNguoiDungService extends baseService {
     }
 
     capNhatThongTinNguoiDung = (formData) => {
-        return this.put(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,formData)
+        return this.put(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, formData)
+    }
+
+    // admin
+    layDanhSachNguoiDung = () => {
+        return this.get(`/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUPID}`)
+
     }
 
 }
-
-
 export const quanLyNguoiDungService = new QuanLyNguoiDungService();
