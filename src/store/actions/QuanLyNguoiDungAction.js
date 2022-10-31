@@ -95,10 +95,10 @@ export const capNhatThongTinNguoiDungAction = (formData) => {
 }
 
 // ADMIN
-export const layDanhSachNguoiDungAction = () => {
+export const layDanhSachNguoiDungAction = (taiKhoan = '') => {
     return async dispatch => {
         try {
-            const result = await quanLyNguoiDungService.layDanhSachNguoiDung()
+            const result = await quanLyNguoiDungService.layDanhSachNguoiDung(taiKhoan)
             console.log("result: ", result);
 
             if (result.status === 200) {

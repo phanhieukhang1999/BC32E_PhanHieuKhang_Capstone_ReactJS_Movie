@@ -23,7 +23,10 @@ export class QuanLyNguoiDungService extends baseService {
     }
 
     // admin
-    layDanhSachNguoiDung = () => {
+    layDanhSachNguoiDung = (taiKhoan = '') => {
+        if (taiKhoan.trim() != '') {
+            return this.get(`/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUPID}&tuKhoa=${taiKhoan}`)
+        }
         return this.get(`/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUPID}`)
 
     }
