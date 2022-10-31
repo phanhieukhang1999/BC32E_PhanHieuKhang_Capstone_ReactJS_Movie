@@ -24,10 +24,12 @@ export default function User(props) {
 
   }, [])
   const columns = [
-    {
-      title: 'STT',
-      dataIndex: '',
-    },
+    // {
+    //   title: 'STT',
+    //   render: (text,index) => {
+        
+    //   }
+    // },
     {
       title: 'Tài khoản',
       dataIndex: 'taiKhoan',
