@@ -1,5 +1,5 @@
 import { quanLyNguoiDungService } from "../../services/QuanLyNguoiDungService"
-import { CAP_NHAT_NGUOI_DUNG, DANG_KY_ACTION, DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from "./type/QuanLyNguoiDungType"
+import { CAP_NHAT_NGUOI_DUNG, DANG_KY_ACTION, DANG_NHAP_ACTION, LAY_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG } from "./type/QuanLyNguoiDungType"
 import { history } from '../../App'
 export const dangNhapAction = (thongTinDangNhap) => {
     return async (dispatch) => {
@@ -14,7 +14,7 @@ export const dangNhapAction = (thongTinDangNhap) => {
                 })
                 // chuyển hướng đăng nhập về trang trước đó
                 // history.push(`detail/${thongTinDangNhap.lichChieu.maLichChieu}`)
-                
+
                 history.push('/home')
 
             }
@@ -38,6 +38,8 @@ export const dangKyAction = (thongTinDangKy) => {
 
                 })
                 // history chuyển hướng dăng ký thành công về trang login
+                // history.goBack()
+
                 history.push('/login')
 
             }
@@ -54,7 +56,7 @@ export const layThongTinNguoiDungAction = (taiKhoan) => {
     return async dispatch => {
         try {
             const result = await quanLyNguoiDungService.layThongTinNguoiDung(taiKhoan)
-          
+
             console.log("result: ", result);
 
             if (result.status === 200) {
@@ -82,6 +84,27 @@ export const capNhatThongTinNguoiDungAction = (formData) => {
                 dispatch({
                     type: SET_THONG_TIN_NGUOI_DUNG,
                     thongTinNguoiDung: result.data.content,
+
+                })
+            }
+        } catch (error) {
+            console.log("error: ", error.response.data);
+
+        }
+    }
+}
+
+// ADMIN
+export const layDanhSachNguoiDungAction = () => {
+    return async dispatch => {
+        try {
+            const result = await quanLyNguoiDungService.layDanhSachNguoiDung()
+            console.log("result: ", result);
+
+            if (result.status === 200) {
+                dispatch({
+                    type: LAY_DANH_SACH_NGUOI_DUNG,
+                    arrUserDefault: result.data.content,
 
                 })
             }

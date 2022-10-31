@@ -1,5 +1,5 @@
 import { TOKEN, USER_LOGIN, USER_REGISTER } from "../../util/settings/config"
-import { DANG_KY_ACTION, DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from "../actions/type/QuanLyNguoiDungType"
+import { DANG_KY_ACTION, DANG_NHAP_ACTION, LAY_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG } from "../actions/type/QuanLyNguoiDungType"
 
 
 let user = {}
@@ -18,6 +18,8 @@ const stateDefault = {
     userRegister: register,
 
     thongTinNguoiDung: {},
+
+    arrUserDefault: []
 
 }
 
@@ -42,6 +44,11 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
         case SET_THONG_TIN_NGUOI_DUNG: {
             state.thongTinNguoiDung = action.thongTinNguoiDung
             return { ...state }
+        }
+
+        case LAY_DANH_SACH_NGUOI_DUNG: {
+            state.arrUserDefault = action.arrUserDefault
+            return {...state}
         }
 
 
