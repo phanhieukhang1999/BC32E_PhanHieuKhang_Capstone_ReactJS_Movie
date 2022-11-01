@@ -76,7 +76,7 @@ const AdminTemplate = (props) => { //path, exact, Component
                     </NavLink>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<UserOutlined />}>
-                            <NavLink to="/admin/users">Users</NavLink>
+                            <NavLink to="/admin/user">Users</NavLink>
                         </Menu.Item>
                         <SubMenu key="sub1" icon={<FileOutlined />} title="Films">
                             <Menu.Item key="10" icon={<FileOutlined />}>

@@ -22,13 +22,20 @@ export class QuanLyNguoiDungService extends baseService {
         return this.put(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, formData)
     }
 
-    // admin
+    // ADMIN USER
     layDanhSachNguoiDung = (taiKhoan = '') => {
         if (taiKhoan.trim() != '') {
             return this.get(`/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUPID}&tuKhoa=${taiKhoan}`)
         }
         return this.get(`/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUPID}`)
 
+    }
+    themNguoiDung = (thongTin) => {
+        return this.post('/api/QuanLyNguoiDung/ThemNguoiDung',thongTin)
+    }
+
+    capNhatNguoiDung = (taiKhoan) => {
+        return this.post('/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung',taiKhoan)
     }
 
 }

@@ -114,3 +114,35 @@ export const layDanhSachNguoiDungAction = (taiKhoan = '') => {
         }
     }
 }
+
+export const themNguoiDungAction = (thongTin) => {
+    return async dispatch => {
+        try {
+            const result = await quanLyNguoiDungService.themNguoiDung(thongTin)
+            alert('Thêm người dùng thành công !')
+            console.log("result: ", result.data.content);   
+
+            
+        } catch (error) {
+            console.log("error: ", error.response?.data);
+
+        }
+    }
+}
+
+export const capNhatNguoiDungAction = (taiKhoan) => {
+    return async dispatch => {
+        try {
+            const result = await quanLyNguoiDungService.capNhatNguoiDung(taiKhoan)
+            alert('Cập nhật người dùng thành công !')
+            console.log("result: ", result.data.content); 
+              
+
+            // dispatch(layDanhSachNguoiDungAction());
+            // history.push('/admin/user');
+        } catch (error) {
+            console.log("error: ", error.response?.data);
+
+        }
+    }
+}
