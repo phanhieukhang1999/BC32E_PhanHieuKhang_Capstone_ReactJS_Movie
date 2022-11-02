@@ -3,37 +3,34 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../../../../App';
-import { capNhatNguoiDungAction, layDanhSachNguoiDungAction, layThongTinNguoiDungAction } from '../../../../store/actions/QuanLyNguoiDungAction';
-
+import { capNhatNguoiDungAction, layDanhSachNguoiDungAction, layThongTinNguoiDungAction, layThongTinUserAction } from '../../../../store/actions/QuanLyNguoiDungAction';
+import { useParams } from "react-router-dom";
+import { GROUPID } from '../../../../util/settings/config';
 export default function EditUser(props) {
-  const dispatch = useDispatch()
-
-  const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer)
-  console.log("thongTinNguoiDung: ", thongTinNguoiDung);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const { thongTinUser } = useSelector(state => state.QuanLyNguoiDungReducer)
+  console.log("thongTinUser: ", thongTinUser);
 
   useEffect(() => {
-    let { taiKhoan } = props.match.params
-
-    dispatch(layThongTinNguoiDungAction(taiKhoan))
+    dispatch(layThongTinUserAction(id))
   }, [])
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      taiKhoan: thongTinNguoiDung.taiKhoan,
-      matKhau: thongTinNguoiDung.matKhau,
-      email: thongTinNguoiDung.email,
-      soDt: thongTinNguoiDung.soDT,
-      maNhom: thongTinNguoiDung.maNhom,
-      maLoaiNguoiDung: thongTinNguoiDung.maLoaiNguoiDung,
-      hoTen: thongTinNguoiDung.hoTen,
+      taiKhoan: thongTinUser?.taiKhoan || '',
+      matKhau: thongTinUser?.matKhau || '',
+      email: thongTinUser?.email || '',
+      soDT: thongTinUser?.soDT || '',
+      maNhom: GROUPID,
+      maLoaiNguoiDung: thongTinUser?.maLoaiNguoiDung || '',
+      hoTen: thongTinUser?.hoTen || '',
     },
     onSubmit: values => {
 
-      const action = capNhatNguoiDungAction(values)
-      dispatch(action)
       console.log("values: ", values);
-
+      dispatch(capNhatNguoiDungAction(values))
     }
   })
   return (
@@ -52,11 +49,11 @@ export default function EditUser(props) {
             </div>
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="matKhau" className="text-sm">Mật khẩu</label>
-              <input value={formik.values.matKhau} onChange={formik.handleChange} name='matKhau' placeholder="Email" className="mt-2 p-3 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+              <input value={formik.values.matKhau} onChange={formik.handleChange} name='matKhau' placeholder="Mật khẩu" className="mt-2 p-3 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
             </div>
             <div className="col-span-full sm:col-span-3">
-              <label htmlFor="soDt" className="text-sm">Số điện thoại</label>
-              <input value={formik.values.soDt} onChange={formik.handleChange} name='soDt' placeholder="Số điện thoại" className="mt-2 p-3 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+              <label htmlFor="soDT" className="text-sm">Số điện thoại</label>
+              <input value={formik.values.soDT} onChange={formik.handleChange} name='soDt' placeholder="Số điện thoại" className="mt-2 p-3 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
             </div>
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="hoTen" className="text-sm">Họ tên</label>
@@ -64,7 +61,7 @@ export default function EditUser(props) {
             </div>
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="maLoaiNguoiDung" className="text-sm">Loại người dùng</label>
-              <select value={formik.values.maLoaiNguoiDung}  onChange={formik.handleChange} name='maLoaiNguoiDung' className="mt-2 p-3 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" >
+              <select value={formik.values.maLoaiNguoiDung} onChange={formik.handleChange} name='maLoaiNguoiDung' className="mt-2 p-3 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" >
                 <option value='KhachHang'>KhachHang</option>
                 <option value='QuanTri'>QuanTri</option>
               </select>

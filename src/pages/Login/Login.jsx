@@ -3,12 +3,14 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { dangNhapAction } from '../../store/actions/QuanLyNguoiDungAction';
+import { useForm } from 'react-hook-form'
+import * as Yup from "yup";
 
 export default function Login(props) {
-
+    const { login, handleSubmit } = useForm()
     const dispatch = useDispatch()
 
-    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
+    const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer)
     console.log("userLogin: ", userLogin);
 
     const formik = useFormik({
@@ -16,6 +18,20 @@ export default function Login(props) {
             taiKhoan: '',
             matKhau: '',
         },
+        validationSchema: Yup.object({
+
+            taiKhoan: Yup.string()
+                .matches(/^[aA-zZ\s]+$/, 'phải là ký tự !')
+                .min(5, "từ 5 ký tự đến 15 ký tự !")
+                .max(15, "tối đa 15 ký tự !")
+                .required("không được bỏ trống!"),
+
+            matKhau: Yup.string()
+                .matches(/^[0-9]+$/, 'là số từ 0 đến 9!')
+                .min(8, "tối thiểu 8 ký tự")
+                .required("không được bỏ trống!"),
+
+        }),
         onSubmit: values => {
 
             const action = dangNhapAction(values)
@@ -48,7 +64,10 @@ export default function Login(props) {
                     <div>
                         <div>
                             <div className="text-sm font-bold text-gray-700 tracking-wide">Tài Khoản</div>
-                            <input name='taiKhoan' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào tài khoản" />
+                            <input name='taiKhoan' value={formik.values.taiKhoan} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào tài khoản" />
+                            {formik.errors.taiKhoan && formik.touched.taiKhoan && (
+                                <p className='text-red-600 text-sm'>Tài khoản {formik.errors.taiKhoan}</p>
+                            )}
                         </div>
                         <div className="mt-8">
                             <div className="flex justify-between items-center">
@@ -62,7 +81,10 @@ export default function Login(props) {
                                     </a>
                                 </div>
                             </div>
-                            <input type="password" name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào mật khẩu" />
+                            <input type="password" name='matKhau' value={formik.values.matKhau} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào mật khẩu" />
+                            {formik.errors.matKhau && formik.touched.matKhau && (
+                                <p className='text-red-600 text-sm'>Mật khẩu {formik.errors.matKhau}</p>
+                            )}
                         </div>
                         <div className="mt-10">
                             <button className="bg-indigo-500 text-gray-100 text-xl p-4 w-full rounded-full tracking-wide

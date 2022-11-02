@@ -1,9 +1,9 @@
-import { useFormik } from 'formik';
+import { ErrorMessage, useFormik } from 'formik';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { dangKyAction, dangNhapAction } from '../../store/actions/QuanLyNguoiDungAction';
-
+import * as Yup from "yup";
 export default function Register(props) {
 
   const dispatch = useDispatch()
@@ -12,16 +12,44 @@ export default function Register(props) {
   console.log("userRegister: ", userRegister);
 
   const formik = useFormik({
+
     initialValues: {
       taiKhoan: '',
       matKhau: '',
       email: '',
+      confirm_matKhau: '',
       soDt: '',
       maNhom: '',
-      hoTen:'',
+      hoTen: '',
     },
-    onSubmit: values => {
+    validationSchema: Yup.object({
 
+      taiKhoan: Yup.string()
+        .matches(/^[aA-zZ\s]+$/, 'phải là ký tự !')
+        .min(5, "từ 5 ký tự đến 15 ký tự !")
+        .max(15, "tối đa 15 ký tự !")
+        .required("không được bỏ trống!"),
+      email: Yup.string()
+        .email("không đúng định dạng!")
+        .required("không được bỏ trống!"),
+      matKhau: Yup.string()
+        .matches(/^[0-9]+$/, 'là số từ 0 đến 9!')
+        .min(8, "tối thiểu 8 ký tự")
+        .required("không được bỏ trống!"),
+      confirm_matKhau: Yup.string()
+        .oneOf([Yup.ref("matKhau")], "nhập lại không đúng!")
+        .required("không được bỏ trống!"),
+      soDt: Yup.string()
+        .min(10, "bắt buộc phải là số và là 10 số !")
+        .required("không được bỏ trống!"),
+      hoTen: Yup.string()
+        .matches(/^[aA-zZ\s]+$/, 'phải là ký tự !')
+        .min(10, "từ 2 ký tự đến 50 ký tự !")
+        .max(50, "tối đa 50 ký tự !")
+        .required("không được bỏ trống!"),
+    }),
+    onSubmit: values => {
+      // alert(JSON.stringify(values, null, 2));
       const action = dangKyAction(values)
       dispatch(action)
       console.log("values: ", values);
@@ -52,32 +80,51 @@ export default function Register(props) {
           <div>
             <div>
               <div className="text-sm font-bold text-gray-700 tracking-wide">Tài Khoản</div>
-              <input name='taiKhoan' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào tài khoản" />
+              <input name='taiKhoan' value={formik.values.taiKhoan} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào tài khoản" />
+              {formik.errors.taiKhoan && formik.touched.taiKhoan && (
+                <p className='text-red-600 text-sm'>Tài khoản {formik.errors.taiKhoan}</p>
+              )}
+
             </div>
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Mật khẩu</div>
 
-              <input name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào mật khẩu" />
+              <input type="password" name='matKhau' value={formik.values.matKhau} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào mật khẩu" />
+              {formik.errors.matKhau && formik.touched.matKhau && (
+                <p className='text-red-600 text-sm'>Mật khẩu {formik.errors.matKhau}</p>
+              )}
             </div>
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Nhập lại khẩu</div>
 
-              <input name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập lại mật khẩu" />
+              <input type="password" name='confirm_matKhau' value={formik.values.confirm_matKhau} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập lại mật khẩu" />
+              {formik.errors.confirm_matKhau && formik.touched.confirm_matKhau && (
+                <p className='text-red-600 text-sm'>Mật khẩu {formik.errors.confirm_matKhau}</p>
+              )}
             </div>
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Họ tên</div>
 
-              <input name='hoTen' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào họ tên" />
+              <input name='hoTen' value={formik.values.hoTen} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào họ tên" />
+              {formik.errors.hoTen && formik.touched.hoTen && (
+                <p className='text-red-600 text-sm'>Họ tên {formik.errors.hoTen}</p>
+              )}
             </div>
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Email</div>
 
-              <input name='email' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào email" />
+              <input name='email' value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào email" />
+              {formik.errors.email && formik.touched.email && (
+                <p className='text-red-600 text-sm'>Email {formik.errors.email}</p>
+              )}
             </div>
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Số điện thoại</div>
 
-              <input name='soDt' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào sdt" />
+              <input name='soDt' value={formik.values.emasoDtil} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào số điện thoại" />
+              {formik.errors.soDt && formik.touched.soDt && (
+                <p className='text-red-600 text-sm'>Số điện thoại {formik.errors.soDt}</p>
+              )}
             </div>
 
 
@@ -89,7 +136,7 @@ export default function Register(props) {
               </button>
             </div>
           </div>
-          <div className="mt-12 text-xl font-display font-semibold text-gray-700 text-center">
+          <div className="my-5 text-xl font-display font-semibold text-gray-700 text-center">
             Bạn đã có tài khoản ? <NavLink to="/login" className="cursor-pointer text-indigo-600 hover:text-indigo-800">Đăng nhập</NavLink>
           </div>
         </div>

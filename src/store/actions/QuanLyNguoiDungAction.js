@@ -1,5 +1,5 @@
 import { quanLyNguoiDungService } from "../../services/QuanLyNguoiDungService"
-import { CAP_NHAT_NGUOI_DUNG, DANG_KY_ACTION, DANG_NHAP_ACTION, LAY_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG } from "./type/QuanLyNguoiDungType"
+import { CAP_NHAT_NGUOI_DUNG, DANG_KY_ACTION, DANG_NHAP_ACTION, LAY_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG, SET_THONG_TIN_USER } from "./type/QuanLyNguoiDungType"
 import { history } from '../../App'
 export const dangNhapAction = (thongTinDangNhap) => {
     return async (dispatch) => {
@@ -115,6 +115,25 @@ export const layDanhSachNguoiDungAction = (taiKhoan = '') => {
     }
 }
 
+export const layThongTinUserAction = (taiKhoan) => {
+    return async dispatch => {
+        try {
+            const result = await quanLyNguoiDungService.layThongTinUser(taiKhoan)
+            console.log("result: ", result);
+            if (result.status === 200) {
+                dispatch({
+                    type: SET_THONG_TIN_USER,
+                    thongTinUser: result.data.content[0]
+                })
+            }
+            
+        } catch (error) {
+            console.log("error: ", error.response.data);
+
+        }
+    }
+}
+
 export const themNguoiDungAction = (thongTin) => {
     return async dispatch => {
         try {
@@ -122,6 +141,7 @@ export const themNguoiDungAction = (thongTin) => {
             alert('Thêm người dùng thành công !')
             console.log("result: ", result.data.content);   
 
+            history.push('/admin/user');
             
         } catch (error) {
             console.log("error: ", error.response?.data);
@@ -135,11 +155,18 @@ export const capNhatNguoiDungAction = (taiKhoan) => {
         try {
             const result = await quanLyNguoiDungService.capNhatNguoiDung(taiKhoan)
             alert('Cập nhật người dùng thành công !')
-            console.log("result: ", result.data.content); 
-              
+            console.log("result: ", result); 
+            if (result.status === 200) {
+                dispatch({
+                    type: SET_THONG_TIN_USER,
+                    thongTinUser: result.data.content,
 
-            // dispatch(layDanhSachNguoiDungAction());
-            // history.push('/admin/user');
+                })
+            }
+
+            dispatch(layDanhSachNguoiDungAction());
+            history.push('/admin/user');
+
         } catch (error) {
             console.log("error: ", error.response?.data);
 

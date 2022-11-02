@@ -104,7 +104,7 @@ export default function User(props) {
 
 
           }}><DeleteOutlined style={{ color: 'red' }} /> </span>
-
+ 
 
         </Fragment>
       },
