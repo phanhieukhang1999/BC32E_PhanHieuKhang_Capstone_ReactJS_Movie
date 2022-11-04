@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import HomeMenu from './HomeMenu/HomeMenu'
-
+import '../Home/Home.scss'
 // Kết nối redux
 import { useSelector, useDispatch } from 'react-redux'
 import MultipleRowSlick from '../../components/RSlick/MultipleRowSlick'

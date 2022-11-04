@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import styleSlick from './MultipleRowSlick.module.css';
+import './MultipleRowSlick.scss'
 import Film from '../Film/Film'
 import Film_Flip from "../Film/Film_Flip";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,19 +59,43 @@ const MultipleRowSlick = (props) => {
 
     const settings = {
         className: "center variable-width",
-        centerMode: true,
+        // centerMode: true,
+        dots: true,
         infinite: true,
-        centerPadding: "60px",
-        slidesToShow: 2,
+        // centerPadding: "90px",
+        slidesToShow: 4,
         speed: 500,
         rows: 2,
-        slidesPerRow: 2,
+        slidesPerRow: 1,
+        initialSlide: 0,
         variableWidth: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
+        responsive: [
+            {
+                breakpoint: 320,
+                settings: { rows: 2, slidesToShow: 1, slidesToScroll: 1, infinite: false }
+            },
+            {
+                breakpoint: 576,
+                settings: {  rows: 2, slidesToShow: 1, slidesToScroll: 1, infinite: false }
+            },
+            {
+                breakpoint: 768,
+                settings: { rows: 2, slidesToShow: 2, slidesToScroll: 2, infinite: false }
+            },
+            {
+                breakpoint: 992,
+                settings: { slidesToShow: 3, rows: 2, slidesToScroll: 2, infinite: false }
+            },
+            {
+                breakpoint: 1024,
+                settings: { rows: 2, slidesToShow: 3, slidesToScroll: 2, infinite: false }
+            }
+        ]
     };
     return (
-        <div>
+        <div className="container">
             <button type="button" class={`${styleSlick[activeClassDangChieu]} mr-5 px-8 py-3 font-semibold bg-red-800 rounded border border-red-700 text-white`} onClick={() => {
                 const action = { type: SET_FILM_DANG_CHIEU }
                 dispatch(action)
