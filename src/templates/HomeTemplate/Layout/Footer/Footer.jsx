@@ -17,7 +17,7 @@ export default function Footer(props) {
                 <div className="grid grid-cols-12">
                     <div className="pb-6 col-span-full md:pb-0 md:col-span-3">
                         <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 md:justify-start">
-                        <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" alt="cyberlearn.vn"/>
+                        <img src="https://cybersoft.edu.vn/wp-content/uploads/2017/03/MIN-OP1.png" alt="cyberlearn.vn"/>
 
                         </a>
                     </div>
