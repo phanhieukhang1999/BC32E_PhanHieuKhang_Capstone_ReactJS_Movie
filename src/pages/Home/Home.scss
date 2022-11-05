@@ -1,7 +1,18 @@
-@media (max-width: 992px) {
-    section {
-        .container {
-            padding: 20px auto;
-        }
+div {
+  section {
+    @media (max-width: 992px) {
+      .section-body {
+        padding: 20px;
+      }
     }
+    @media (max-width: 387px) {
+      .section-body {
+        .container {
+            button {
+                padding: 5px;
+            }
+        }
+      }
+    }
+  }
 }
