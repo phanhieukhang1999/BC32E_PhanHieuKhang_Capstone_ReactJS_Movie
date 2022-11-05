@@ -1,10 +1,21 @@
-.slick-dots-bottom{
-    margin: 0 !important;
-    padding: 0 !important;
+.slick-dots li button:before {
+    content: none !important;
+}
+.slick-dots-bottom {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 @media (max-width: 1024px) {
-    .ant-carousel .slick-dots {
-        z-index: 0 !important;
+  .ant-carousel .slick-dots {
+    z-index: 0 !important;
+  }
+}
+.ant-carousel {
+  @media (max-width: 576px) {
+    .home-carousel {
+    //   height: 355px !important;
+    //   margin-top: 70px;
     }
+  }
 }

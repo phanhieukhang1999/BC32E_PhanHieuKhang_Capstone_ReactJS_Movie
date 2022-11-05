@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './Detail.css'
+import './Detail.scss'
 import '../../assets/styles/circle.scss'
 
 import { Tabs, Radio, Space, Rate } from 'antd';
@@ -62,8 +62,8 @@ export default function Detail(props) {
                 <div className='my-5 container w-2/3 bg-white mx-auto py-5'>
                     <Tabs defaultActiveKey='1' centered>
                         <TabPane tab='Lịch chiếu' key='1' style={{ minHeight: 300 }}>
-                            <div className=''>
-                                <Tabs tabPosition={'left'}>
+                            <div className='lich-chieu'>
+                                <Tabs tabPosition={'top'}>
                                     {filmDetail.heThongRapChieu?.map((heThongRap, index) => {
                                         return <TabPane tab={<div>
                                             <img src={heThongRap.logo} alt={heThongRap.logo} className="rounded-full" width={50} height={50} />

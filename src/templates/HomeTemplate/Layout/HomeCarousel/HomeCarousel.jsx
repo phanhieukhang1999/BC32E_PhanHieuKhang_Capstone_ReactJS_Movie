@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCarouselAction } from '../../../../store/actions/CarouselAction';
 import './HomeCarousel.scss'
 const contentStyle = {
-    height: '600px',
+    // height: '600px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
     backgroundPosition: 'center',
     backgroundSize: '100%',
     backgroundRepeat: 'no-repeat',
+    
 };
 
 export default function HomeCarousel(props) {
@@ -35,7 +36,7 @@ export default function HomeCarousel(props) {
     const rendenImg = () => {
         return arrImg.map((item, index) => {
             return <div key={index}>
-                <div style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}>
+                <div className='home-carousel' style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}>
                     <img src={item.hinhAnh} alt={item.hinhAnh} className='w-full opacity-0' />
 
                 </div>

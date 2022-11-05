@@ -27,7 +27,7 @@ export default function Home(props) {
         <div>
             <HomeCarousel />
             <section className="text-gray-600 body-font">
-                <div className="container px-5 py-24 mx-auto">
+                <div className="section-body container px-5 py-24 mx-auto">
                     <MultipleRowSlick arrFilm={arrFilm} />
                     {/* <div className="flex flex-wrap -m-4">
                         {renderFilms()}
