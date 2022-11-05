@@ -43,7 +43,7 @@ export default function Header() {
             history.push(`/profile/${userLogin.taiKhoan}`)
         }}>Hello ! {userLogin.taiKhoan}</button>
 
-            <button className='text-white mr-5' onClick={() => {
+            <button  className='text-white mr-5' onClick={() => {
                 localStorage.removeItem(USER_LOGIN)
                 localStorage.removeItem(TOKEN)
                 history.push('/home')
@@ -81,7 +81,7 @@ export default function Header() {
                     </li>
                     <li className="flex">
                         <NavLink to="/news" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-white" activeClassName='border-b-white'>News</NavLink>
-                        
+
                     </li>
                     {renderLogin()}
                     {/* <Select defaultValue="en" style={{ width: 100, }} onChange={handleChange}>
@@ -91,7 +91,7 @@ export default function Header() {
                         <Option value="vi">Vi</Option>
                     </Select> */}
                 </ul>
-                <div className="items-center flex-shrink-0 lg:flex">
+                <div className="leaguage items-center flex-shrink-0 lg:flex">
                     {/* {renderLogin()} */}
 
                     {/* <div className=''>

@@ -78,7 +78,7 @@ function ThongTinCaNhan(props) {
                 <div className="text-sm font-bold text-gray-700 tracking-wide">
                   Số điện thoại
                 </div>
-                <input value={formik.values.soDT} name='matKhau' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="Nhập vào số điện thoại" />
+                <input value={formik.values.soDT} name='soDT' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="Nhập vào số điện thoại" />
               </div>
               <div className="mt-8">
                 <div className="text-sm font-bold text-gray-700 tracking-wide">

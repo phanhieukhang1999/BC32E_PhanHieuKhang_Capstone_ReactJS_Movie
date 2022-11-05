@@ -37,7 +37,7 @@ export default function HomeCarousel(props) {
         return arrImg.map((item, index) => {
             return <div key={index}>
                 <div className='home-carousel' style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}>
-                    <img src={item.hinhAnh} alt={item.hinhAnh} className='w-full opacity-0' />
+                    <img style={{height: 500}} src={item.hinhAnh} alt={item.hinhAnh} className='w-full opacity-0' />
 
                 </div>
             </div>
