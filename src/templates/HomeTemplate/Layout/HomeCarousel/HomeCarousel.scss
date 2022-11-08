@@ -1,5 +1,5 @@
 .slick-dots li button:before {
-    content: none !important;
+  content: none !important;
 }
 .slick-dots-bottom {
   margin: 0 !important;
@@ -14,8 +14,38 @@
 .ant-carousel {
   @media (max-width: 576px) {
     .home-carousel {
-    //   height: 355px !important;
-    //   margin-top: 70px;
+      //   height: 355px !important;
+      //   margin-top: 70px;
+    }
+  }
+  @media (max-width: 480px) {
+    .home-carousel {
+      height: 320px !important;
+      margin-top: 70px;
+    }
+  }
+  @media (max-width: 430px) {
+    .home-carousel {
+      height: 290px !important;
+      margin-top: 70px;
+    }
+  }
+  @media (max-width: 400px) {
+    .home-carousel {
+      height: 270px !important;
+      margin-top: 70px;
+    }
+  }
+  @media (max-width: 376px) {
+    .home-carousel {
+      height: 260px !important;
+      margin-top: 70px;
+    }
+  }
+  @media (max-width: 320px) {
+    .home-carousel {
+      height: 230px !important;
+      margin-top: 70px;
     }
   }
 }
