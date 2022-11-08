@@ -12,10 +12,16 @@
   }
 }
 .ant-carousel {
+  @media (max-width: 768px) {
+    .home-carousel {
+        height: 480px !important;
+        margin-top: 70px;
+    }
+  }
   @media (max-width: 576px) {
     .home-carousel {
-      //   height: 355px !important;
-      //   margin-top: 70px;
+        height: 355px !important;
+        margin-top: 70px;
     }
   }
   @media (max-width: 480px) {
@@ -27,6 +33,12 @@
   @media (max-width: 430px) {
     .home-carousel {
       height: 290px !important;
+      margin-top: 70px;
+    }
+  }
+  @media (max-width: 420px) {
+    .home-carousel {
+      height: 270px !important;
       margin-top: 70px;
     }
   }
@@ -42,9 +54,15 @@
       margin-top: 70px;
     }
   }
+  @media (max-width: 365px) {
+    .home-carousel {
+      height: 250px !important;
+      margin-top: 70px;
+    }
+  }
   @media (max-width: 320px) {
     .home-carousel {
-      height: 230px !important;
+      height: 220px !important;
       margin-top: 70px;
     }
   }
