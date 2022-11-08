@@ -53,7 +53,7 @@ export default function EditUser(props) {
             </div>
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="soDT" className="text-sm">Số điện thoại</label>
-              <input value={formik.values.soDT} onChange={formik.handleChange} name='soDt' placeholder="Số điện thoại" className="mt-2 p-3 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+              <input value={formik.values.soDT} onChange={formik.handleChange} name='soDT' placeholder="Số điện thoại" className="mt-2 p-3 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
             </div>
             <div className="col-span-full sm:col-span-3">
               <label htmlFor="hoTen" className="text-sm">Họ tên</label>

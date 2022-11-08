@@ -12,7 +12,7 @@ export const HomeTemplate = (props) => { // path, exact, Component
         window.scrollTo(0, 0)
     })
 
-    return <Route {...restProps} render={(propsRoute) => { //props.location, props.history, props.match
+    return <Route {...restProps} render={(propsRoute) => { 
 
         return <Fragment>
             <Header />

@@ -153,7 +153,7 @@ export const themNguoiDungAction = (thongTin) => {
 export const capNhatNguoiDungAction = (taiKhoan) => {
     return async dispatch => {
         try {
-            const result = await quanLyNguoiDungService.capNhatNguoiDung(taiKhoan)
+            let result = await quanLyNguoiDungService.capNhatNguoiDung(taiKhoan)
             alert('Cập nhật người dùng thành công !')
             console.log("result: ", result); 
             if (result.status === 200) {
