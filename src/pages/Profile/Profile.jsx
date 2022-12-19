@@ -94,11 +94,11 @@ function ThongTinCaNhan(props) {
                 <input value={formik.values.hoTen} name='hoTen' onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="Nhập vào họ tên" />
               </div>
               <div className="mt-10">
-                <button  className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+                <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                           font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                           shadow-lg" onClick={() => {
-                            window.location.reload()
-                          }}>
+                    window.location.reload()
+                  }}>
                   Cập nhật
                 </button>
               </div>

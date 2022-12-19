@@ -6,6 +6,7 @@ import { AppleOutlined, FacebookOutlined } from '@ant-design/icons'
 
 export default function Footer(props) {
     const {heThongRapChieu} = useSelector(state => state.QuanLyRapReducer)
+    console.log("heThongRapChieu: ", heThongRapChieu);
 
     const arrHeThongRap =_.map(heThongRapChieu, (heThongRap) => _.pick(heThongRap, ['maHeThongRap','tenHeThongRap', 'logo']))
     console.log("arrHeThongRap: ", arrHeThongRap);

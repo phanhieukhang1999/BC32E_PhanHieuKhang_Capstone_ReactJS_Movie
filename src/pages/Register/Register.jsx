@@ -25,7 +25,7 @@ export default function Register(props) {
     validationSchema: Yup.object({
 
       taiKhoan: Yup.string()
-        .matches(/^[aA-zZ\s]+$/, 'phải là ký tự !')
+        // .matches(/^[aA-zZ\s]+$/, 'phải là ký tự !')
         .min(5, "từ 5 ký tự đến 15 ký tự !")
         .max(15, "tối đa 15 ký tự !")
         .required("không được bỏ trống!"),
@@ -33,8 +33,8 @@ export default function Register(props) {
         .email("không đúng định dạng!")
         .required("không được bỏ trống!"),
       matKhau: Yup.string()
-        .matches(/^[0-9]+$/, 'là số từ 0 đến 9!')
-        .min(8, "tối thiểu 8 ký tự")
+        // .matches(/^[0-9]+$/, 'là số từ 0 đến 9!')
+        // .min(8, "tối thiểu 8 ký tự")
         .required("không được bỏ trống!"),
       confirm_matKhau: Yup.string()
         .oneOf([Yup.ref("matKhau")], "nhập lại không đúng!")
@@ -121,7 +121,7 @@ export default function Register(props) {
             <div className="mt-8">
               <div className="text-sm font-bold text-gray-700 tracking-wide"> Số điện thoại</div>
 
-              <input name='soDt' value={formik.values.emasoDtil} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào số điện thoại" />
+              <input name='soDt' value={formik.values.soDt} onBlur={formik.handleBlur} onChange={formik.handleChange} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" placeholder="Nhập vào số điện thoại" />
               {formik.errors.soDt && formik.touched.soDt && (
                 <p className='text-red-600 text-sm'>Số điện thoại {formik.errors.soDt}</p>
               )}
