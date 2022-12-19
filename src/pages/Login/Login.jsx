@@ -21,14 +21,14 @@ export default function Login(props) {
         validationSchema: Yup.object({
 
             taiKhoan: Yup.string()
-                .matches(/^[aA-zZ\s]+$/, 'phải là ký tự !')
+                // .matches(/^[aA-zZ\s]+$/, 'phải là ký tự !')
                 .min(5, "từ 5 ký tự đến 15 ký tự !")
                 .max(15, "tối đa 15 ký tự !")
                 .required("không được bỏ trống!"),
 
             matKhau: Yup.string()
-                .matches(/^[0-9]+$/, 'là số từ 0 đến 9!')
-                .min(8, "tối thiểu 8 ký tự")
+                // .matches(/^[0-9]+$/, 'là số từ 0 đến 9!')
+                // .min(8, "tối thiểu 8 ký tự")
                 .required("không được bỏ trống!"),
 
         }),
